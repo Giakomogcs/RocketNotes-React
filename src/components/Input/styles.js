@@ -10,6 +10,10 @@ export const Container = styled.div`
 
   margin-bottom: 8px;
   border-radius: 10px;
+  
+  svg{
+    margin-left: 16px;
+  }
 
   > input{
     height: 56px;
@@ -24,9 +28,6 @@ export const Container = styled.div`
       color: ${({theme}) => theme.COLORS.GRAY_300};
     }
 
-    svg{
-      margin-left: 16px;
-    }
 
   }
 `;

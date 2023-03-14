@@ -1,6 +1,6 @@
 import {Container} from './styles'
 
-export function textarea({value, ...rest}){
+export function Textarea({value, ...rest}){
   return(
     <Container {...rest}>
       {value}

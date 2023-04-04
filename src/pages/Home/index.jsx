@@ -13,6 +13,19 @@ import { api } from '../../services/api'
 export function Home(){
 
   const [tags, setTags] = useState([])
+  const [tagsSelected, setTagsSelected] = useState([])
+  const [search, setSearch] = useState("")
+
+  function handleTagSelected(tagName){
+    const alreadySelected = tagsSelected.includes(tagName)
+
+    if(alreadySelected){
+      const filteredTags = tagsSelected.filter(tag => tag !== tagName)
+      setTagsSelected(filteredTags)
+    } else {
+      setTagsSelected(prevState => [...prevState, tagName])
+    }
+  }
 
   
   useEffect(() => {
@@ -23,6 +36,7 @@ export function Home(){
     
     fetchTags()
   }, [])
+
 
   return(
     <Container>
@@ -36,7 +50,8 @@ export function Home(){
         <li>
           <ButtonText 
             title='Todos' 
-            isActive
+            onClick={() => handleTagSelected("all")}
+            isActive={tagsSelected.length === 0}
           />
         </li>
         {
@@ -44,6 +59,8 @@ export function Home(){
             <li key={String(tag.id)}>
               <ButtonText 
                 title={tag.name} 
+                onClick={() => handleTagSelected(tag.name)}
+                isActive={tagsSelected.includes(tag.name)}
               />
             </li>
           ))
@@ -51,7 +68,11 @@ export function Home(){
       </Menu>
 
       <Search>
-        <Input placeholder="Pesquisar pelo título" icon={FiSearch}/>
+        <Input 
+          placeholder="Pesquisar pelo título" 
+          icon={FiSearch}
+          onChange={() => setSearch(e.target.value)}
+        />
       </Search>
 
       <Content>

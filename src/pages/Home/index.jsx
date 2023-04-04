@@ -8,12 +8,10 @@ import {Note} from '../../components/Note'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-import { useAuth } from "../../hooks/auth";
 
 import { api } from '../../services/api'
 
 export function Home(){
-  const {user} = useAuth()
   const [search, setSearch] = useState("")
   const [tags, setTags] = useState([])
   const [tagsSelected, setTagsSelected] = useState([])

@@ -26,14 +26,16 @@ export function Profile(){
   const navigate = useNavigate()
 
   async function handleUpdate(){
-    const user = {
+    const updated = {
       name,
       email,
       password: passwordNew,
       old_password: passwordOld,
     }
 
-    await updateProfile({user, avatarFile});
+    const userUpdated = Object.assign(user, updated)
+
+    await updateProfile({user: userUpdated, avatarFile});
   }
 
   function handleChangeAvatar(event) {
@@ -51,9 +53,9 @@ export function Profile(){
   return(
     <Container>
       <header>
-        <Link onClick={handleBack}>
+        <button onClick={handleBack}>
           <FiArrowLeft/>
-        </Link>
+        </button>
       </header>
 
       <Form>
